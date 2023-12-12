@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const app = express();
@@ -65,16 +74,12 @@ app.get('/api/package-summaries', (req, res) => {
     res.status(200).send(packageSummaries);
 });
 //Sequelize STEP 17
-/*
-import sequelize from './sequelize'; // Import your Sequelize configuration
-import LearningPackageModel from './learningPackage.model'; // Import the LearningPackage model
-
+const sequelize_1 = require("./sequelize"); // Import your Sequelize configuration
+const learningPackage_model_1 = require("./learningPackage.model"); // Import the LearningPackage model
 // Add the models to Sequelize
-sequelize.models.LearningPackageModel = LearningPackageModel;
-
-(async () => {
-    await sequelize.sync(); // This creates the "LearningPackage" table if it doesn't exist
+sequelize_1.default.models.LearningPackageModel = learningPackage_model_1.default;
+(() => __awaiter(void 0, void 0, void 0, function* () {
+    yield sequelize_1.default.sync(); // This creates the "LearningPackage" table if it doesn't exist
     console.log('Database synchronized');
-})();
-*/
+}))();
 //# sourceMappingURL=app.js.map

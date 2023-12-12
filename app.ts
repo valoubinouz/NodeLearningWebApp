@@ -91,7 +91,7 @@ app.get('/api/package-summaries', (req: Request, res: Response) => {
 
 //Sequelize STEP 17
 
-/*
+
 import sequelize from './sequelize'; // Import your Sequelize configuration
 import LearningPackageModel from './learningPackage.model'; // Import the LearningPackage model
 
@@ -102,4 +102,4 @@ sequelize.models.LearningPackageModel = LearningPackageModel;
     await sequelize.sync(); // This creates the "LearningPackage" table if it doesn't exist
     console.log('Database synchronized');
 })();
-*/
+
