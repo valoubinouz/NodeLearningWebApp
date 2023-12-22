@@ -6,11 +6,21 @@ const LearningPackageModel = sequelize_1.default.define('LearningPackage', {
     id: {
         type: sequelize_2.DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     title: {
+        type: sequelize_2.DataTypes.STRING,
+        allowNull: false
+    },
+    description: {
         type: sequelize_2.DataTypes.STRING
-        // allowNull defaults to true
+    },
+    targetAudience: {
+        type: sequelize_2.DataTypes.STRING
+    },
+    difficulty: {
+        type: sequelize_2.DataTypes.INTEGER
     }
 });
 exports.default = LearningPackageModel;

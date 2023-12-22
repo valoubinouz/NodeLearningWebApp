@@ -8,7 +8,7 @@ const sequelize = new sequelize_1.Sequelize({
     password: 'root',
     host: 'localhost',
     dialect: 'postgres',
-    port: 5242
+    port: 5432
 });
 exports.default = sequelize;
 //# sourceMappingURL=sequelize.js.map

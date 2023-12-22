@@ -6,8 +6,8 @@ const sequelize = new Sequelize({
     username: 'learningDbUser',
     password: 'root',
     host: 'localhost',
-    dialect: 'postgres', // Specify the database dialect (not necessary)
-    port: 5242
+    dialect: 'postgres',
+    port: 5432
 });
 
 export default sequelize;

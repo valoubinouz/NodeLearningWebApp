@@ -1,105 +1,121 @@
 import * as express from 'express';
-import { Request, Response} from 'express';
-import LearningPackage from './learningPackage.interface'; // Import the interface
+import {Request, Response} from 'express';
 
+import sequelize from './sequelize';
+import {Op} from 'sequelize';
+import LearningPackageModel from './learningPackage.model';
+import cors = require('cors');
 
 const app = express();
-app.use(express.json()); // => to parse request body with http header "content-type": "application/json"
 
-console.log('starting...');
-app.listen(3002, () => {
+app.use(cors());
+
+app.use(express.json());
+app.listen(3000, () => {
     console.log('Ok, started!');
 });
 
-let idGenerator = 1;
+// app.put('/api/learning-package', (req: Request, res: Response) => {
+//     let NewPackage = <LearningPackage> req.body;
+//     const idOldPack = + req.params.id;
+//
+//     let foundPackage = learningPackages.find((pkg) => pkg.id === idOldPack);
+//
+//     learningPackages[idOldPack] = NewPackage;
+//
+//     if (foundPackage) {
+//         res.status(200).send(NewPackage);
+//     } else {
+//         res.status(404).send({ error: `Entity not found for id: ${idOldPack}` });
+//     }
+// });
 
 
-function newId() {
-    return idGenerator++;
-}
+sequelize.models.LearningPackageModel = LearningPackageModel;
 
-let learningPackages: LearningPackage[] = [
-    { id: newId(), title: "Learn TypeScript" },
-    { id: newId(), title: "learn NodeJs" },
-    { id: newId(), title: "Learn Html" },
-    { id: newId(), title: "Learn Angular" }
+(async () => {
+    await sequelize.sync();
+    console.log('Database synchronized');
+})();
 
-    // ...
-];
 
-app.get('/api/liveness', (req: Request, res: Response) => {
-    res.send('OK !!!');
+app.get('/api/learning-package', async (req: Request, res: Response) => {
+    const packages = await LearningPackageModel.findAll();
+    res.send(packages);
 });
 
-
-
-//Step 8: Declare a route GET “/api/package” GET PACKAGE
-app.get('/api/learning-package', (req: Request, res: Response) => {
-    res.send(learningPackages);
-});
-
-
-//Step 9: Declare a route GET “/api/package/:id” GET ID
-app.get('/api/learning-package/:id', (req: Request, res: Response) => {
-    const idToFind = + req.params.id;
-
-    const foundPackage = learningPackages.find((pkg) => pkg.id === idToFind);
+app.get('/api/learning-package/:id', async (req: Request, res: Response) => {
+    const idToFind = +req.params.id;
+    const foundPackage = await LearningPackageModel.findByPk(idToFind);
 
     if (foundPackage) {
         res.status(200).send(foundPackage);
     } else {
-        res.status(404).send({ error: `Entity not found for id: ${idToFind}` });
+        res.status(404).send({error: `Entity not found for id: ${idToFind}`});
     }
 });
 
-//Step 10: Declare a route POST “/api/package” CREATE NEW
-app.post('/api/learning-package', (req: Request, res: Response) => {
-
-    let item = <LearningPackage> req.body;
-    console.log('handle http POST /api/learning-package', item);
-    item.id = newId();
-    learningPackages.push(item);
-    res.send(item);
-});
-
-
-//Step 11: Declare a route PUT “/api/package” UPDATE
-app.put('/api/learning-package', (req: Request, res: Response) => {
-    let NewPackage = <LearningPackage> req.body;
-    const idOldPack = + req.params.id;
-
-    let foundPackage = learningPackages.find((pkg) => pkg.id === idOldPack);
-
-    learningPackages[idOldPack] = NewPackage;
-
-    if (foundPackage) {
-        res.status(200).send(NewPackage);
-    } else {
-        res.status(404).send({ error: `Entity not found for id: ${idOldPack}` });
+app.post('/api/learning-package', async (req: Request, res: Response) => {
+    try {
+        const newPackage = await LearningPackageModel.create(req.body);
+        res.send(newPackage);
+    } catch (error) {
+        console.error('Error creating learning package:', error);
+        res.status(500).send('Internal Server Error');
     }
 });
 
-//Step 12: Declare a route GET “/api/package-summaries”
+app.put('/api/learning-package/:id', async (req: Request, res: Response) => {
+    const idToFind = +req.params.id;
 
-app.get('/api/package-summaries', (req: Request, res: Response) => {
-    // Extract only the 'id' and 'title' fields from each LearningPackage
-    let packageSummaries = learningPackages.map(({ id, title }) => ({ id, title }));
+    const updatedPackage = await LearningPackageModel.update(req.body, {
+        where: {id: idToFind},
+    });
+    res.send(updatedPackage);
+});
 
-    // Respond with the package summaries
+app.delete('/api/learning-package/:id', async (req: Request, res: Response) => {
+    const idToFind = +req.params.id;
+    try {
+        const deletedPackage = await LearningPackageModel.destroy({
+            where: {id: idToFind},
+        });
+        if (deletedPackage === 0) {
+            res.status(404).send({error: `Entity not found for id: ${idToFind}`});
+        } else {
+            res.status(200).send("Deleted");
+        }
+    } catch (error) {
+        console.error('Error deleting learning package:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.get('/api/package-summaries', async (req: Request, res: Response) => {
+    const packages = await LearningPackageModel.findAll();
+    // @ts-ignore
+    let packageSummaries = packages.map(({id, title}) => ({id, title}));
     res.status(200).send(packageSummaries);
 });
 
-//Sequelize STEP 17
+app.get('/api/search', async (req: Request, res: Response) => {
+    const query = req.query.q;
 
-
-import sequelize from './sequelize'; // Import your Sequelize configuration
-import LearningPackageModel from './learningPackage.model'; // Import the LearningPackage model
-
-// Add the models to Sequelize
-sequelize.models.LearningPackageModel = LearningPackageModel;
-
-(async () => {
-    await sequelize.sync(); // This creates the "LearningPackage" table if it doesn't exist
-    console.log('Database synchronized');
-})();
-
+    try {
+        const packages = await LearningPackageModel.findAll({
+            where: {
+                title: {
+                    [Op.like]: `%${query}%`
+                }
+            }
+        });
+        if (packages.length === 0) {
+            res.status(404).send({error: `No packages found for query: ${query}`});
+        } else {
+            res.status(200).send(packages);
+        }
+    } catch (error) {
+        console.error('Error searching learning packages:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});

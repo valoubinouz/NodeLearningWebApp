@@ -1,4 +1,3 @@
-// learningPackage.interface.ts
 interface LearningPackage {
     id?: number;
     title: string;
