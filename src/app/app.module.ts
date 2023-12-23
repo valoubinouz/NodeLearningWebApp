@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SingleCategoryComponent } from './pages/single-category/single-category.component';
 import { SinglePostComponent } from './pages/single-post/single-post.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PostCardComponent } from './layouts/post-card/post-card.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
