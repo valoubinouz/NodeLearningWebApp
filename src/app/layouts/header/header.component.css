@@ -1,7 +1,14 @@
-header{
+header {
     height: 100px;
 }
 
-.site-logo{
+.site-logo {
     font-size: 1.5em;
+    underline: none;
+}
+
+.site-logo:hover {
+    color: black;
+    font-weight: bold;
+    underline: 1px solid black;
 }

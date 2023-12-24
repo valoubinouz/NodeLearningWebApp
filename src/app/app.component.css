@@ -1,5 +1,9 @@
 .app-body{
     min-height: 35vh;
     margin-top: 150px;
-    margin-bottom: 20px;
+    margin-bottom: 90px;
 }
+.main-content {
+    flex: 1;
+    padding-bottom: 130px;
+  }

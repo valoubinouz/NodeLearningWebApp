@@ -7,4 +7,9 @@ nav{
 
 .nav-link{
     text-transform: uppercase;
+    color: black;
+}
+
+.nav-link:hover{
+    font-weight: bold;
 }

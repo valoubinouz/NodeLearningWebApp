@@ -11,6 +11,10 @@ import { SingleCategoryComponent } from './pages/single-category/single-category
 import { SinglePostComponent } from './pages/single-post/single-post.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { ErrorComponent } from './error/error.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +25,18 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HomeComponent,
     SingleCategoryComponent,
     SinglePostComponent,
-    PostCardComponent
+    PostCardComponent,
+    ErrorComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MdbModalModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MdbModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

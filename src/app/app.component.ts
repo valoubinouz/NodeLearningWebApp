@@ -10,17 +10,15 @@ import { AppServiceService } from './app-service.service';
 export class AppComponent implements OnInit{
   title = 'DirectProf';
 
-  constructor(private appService: AppServiceService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getDataFromApi();
   }
 
-  getDataFromApi() {
-    this.appService.getData().subscribe((res)=>{
-      console.log("API response",res);
-    },(err)=>{
-      console.log("API error",err);
-    })
-  }
+  // getDataFromApi() {
+  //   this.appService.getData().subscribe((res)=>{
+  //   },(err)=>{
+  //     console.log("API error",err);
+  //   })
+  // }
 }

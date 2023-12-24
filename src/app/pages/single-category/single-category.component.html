@@ -1,29 +1,29 @@
-<div class="bg-theme p-5">
-    <div class="container">
-        <h1 class="text-white">General Knowledge</h1>
-        <p class="text-white">Lorem ipsum dolor sit amet </p>
+<div *ngIf="category; else error">
+    <div class="bg-theme p-4">
+        <div class="container">
+            <h1 class="text-white">{{category?.title}}</h1>
+            <hr class="text-white">
+        </div>
+    </div>
+    
+    <div class="container mt-5 mb-5">
+        <div *ngIf="courses.length !== 0; else noCourses">
+            <div class="row">
+                <div class="col-md-3 mb-3" *ngFor="let item of courses">
+                    <app-post-card [course]="item"></app-post-card>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #noCourses>
+            <h6 class="alert alert-info">No courses found.</h6>
+        </ng-template>
+
     </div>
 </div>
 
-<div class="container mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <app-post-card></app-post-card>
-        </div>
-        <div class="col-md-4 mb-3">
-            <app-post-card></app-post-card>
-        </div>
-        <div class="col-md-4 mb-3">
-            <app-post-card></app-post-card>
-        </div>
-        <div class="col-md-4 mb-3">
-            <app-post-card></app-post-card>
-        </div>
-        <div class="col-md-4 mb-3">
-            <app-post-card></app-post-card>
-        </div>
-        <div class="col-md-4 mb-3">
-            <app-post-card></app-post-card>
-        </div>
+<ng-template #error>
+    <div class="container">
+        <h5 class="alert alert-danger p-3">Error: Category not found.</h5>
     </div>
-</div>
+</ng-template>
