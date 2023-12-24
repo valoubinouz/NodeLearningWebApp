@@ -1,8 +1,7 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
 import sequelize from './sequelize';
-import {DataTypes} from "sequelize"; // Import your Sequelize configuration
+import {DataTypes} from "sequelize";
 
-const LearningPackageModel = sequelize.define('LearningPackage',{
+const courseModel = sequelize.define('course',{
     id : {
         type:DataTypes.INTEGER,
         allowNull: false,
@@ -16,13 +15,20 @@ const LearningPackageModel = sequelize.define('LearningPackage',{
     description: {
         type: DataTypes.STRING
     },
-    targetAudience: {
-        type: DataTypes.STRING
-    },
     difficulty: {
         type: DataTypes.INTEGER
+    },
+    category: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'category',
+            key: 'id'
+        },
+        field: 'category',
     }
+}, {
+    freezeTableName: true
 });
 
-
-export default LearningPackageModel;
+export default courseModel;

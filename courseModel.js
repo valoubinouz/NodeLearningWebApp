@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("./sequelize");
-const sequelize_2 = require("sequelize"); // Import your Sequelize configuration
-const LearningPackageModel = sequelize_1.default.define('LearningPackage', {
+const sequelize_2 = require("sequelize");
+const courseModel = sequelize_1.default.define('course', {
     id: {
         type: sequelize_2.DataTypes.INTEGER,
         allowNull: false,
@@ -16,12 +16,20 @@ const LearningPackageModel = sequelize_1.default.define('LearningPackage', {
     description: {
         type: sequelize_2.DataTypes.STRING
     },
-    targetAudience: {
-        type: sequelize_2.DataTypes.STRING
-    },
     difficulty: {
         type: sequelize_2.DataTypes.INTEGER
+    },
+    category: {
+        type: sequelize_2.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'category',
+            key: 'id'
+        },
+        field: 'category',
     }
+}, {
+    freezeTableName: true
 });
-exports.default = LearningPackageModel;
-//# sourceMappingURL=learningPackage.model.js.map
+exports.default = courseModel;
+//# sourceMappingURL=courseModel.js.map

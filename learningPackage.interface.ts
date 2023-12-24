@@ -1,4 +1,4 @@
-interface LearningPackage {
+interface Category {
     id?: number;
     title: string;
     description?: string;
@@ -6,4 +6,4 @@ interface LearningPackage {
     difficulty?: number;
 }
 
-export default LearningPackage;
+export default Category;
