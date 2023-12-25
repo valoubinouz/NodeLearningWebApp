@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ModalComponent } from 'src/app/modal/modal.component';
 
@@ -18,7 +18,8 @@ export class SinglePostComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private modalService: MdbModalService
+    private modalService: MdbModalService,
+    private router: Router
     ) { }
     
     ngOnInit(): void {
@@ -53,6 +54,6 @@ export class SinglePostComponent implements OnInit {
     }
 
     start() {
-      throw new Error('Method not implemented.');
+      this.router.navigate(['/questions', this.id]);
     }
   }

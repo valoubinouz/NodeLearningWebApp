@@ -1,0 +1,43 @@
+<section class="container mt-5 mb-5 text-center" *ngIf="questions; else error">
+    <div class="row">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h3 class="card-title text-center text-primary">Question {{currentQuestionIndex+1}}</h3>
+          <hr>
+  
+          <div *ngIf="questions.length > 0; else noQuestion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" [id]="'flush-heading-' + questions[currentQuestionIndex]?.id">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#flush-collapse-' + questions[currentQuestionIndex]?.id" aria-expanded="false"
+                        [attr.aria-controls]="'flush-collapse-' + questions[currentQuestionIndex]?.id">
+                  {{questions[currentQuestionIndex]?.question}}
+                </button>
+              </h2>
+              <div [id]="'flush-collapse-' + questions[currentQuestionIndex]?.id" class="accordion-collapse collapse"
+                   [attr.aria-labelledby]="'flush-heading-' + questions[currentQuestionIndex]?.id" data-bs-parent=".accordion-flush">
+                <h6 class="accordion-body mt-3">{{questions[currentQuestionIndex]?.answer}}</h6>
+              </div>
+            </div>
+          </div>
+  
+          <ng-template #noQuestion>
+            <h6 class="alert alert-info">No questions found.</h6>
+          </ng-template>
+  
+          <button *ngIf="hasNextQuestion()" class="btn btn-primary mt-3" (click)="nextQuestion()">Next Question</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <ng-template #error>
+    <section class="container mt-5 mb-5 text-center">
+      <div class="row">
+        <div class="col-md-12 text-center mt-5">
+          <div class="alert alert-danger">Error: Course not found.</div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+  

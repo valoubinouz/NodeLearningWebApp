@@ -1,48 +1,65 @@
-
-
-<section class="container mt-5 mb-5 text-center">
+<section class="container mt-5 mb-5 text-center" *ngIf="course; else error">
     <div class="row">
         <div class="col-md-12 text-center mt-5">
             <!-- <div class="card shadow-effect"> -->
-                <div *ngIf="course; else error">
-                    <!-- <img src="https://images.pexels.com/photos/3781338/pexels-photo-3781338.jpeg" alt="" class="card-img-top img-fluid"> -->
-                    <!-- <div class="card-body"> -->
-                        <h1 class="text-center">{{course?.title}}</h1>
-                        <p *ngIf=" course?.description !== null">{{course?.description}}</p>
-                    </div>
-        </div>
-
-                <ng-template #error>
-                    <div class="alert alert-danger">Error: Course not found.</div>
-                </ng-template>
+            <div>
+                <!-- <img src="https://images.pexels.com/photos/3781338/pexels-photo-3781338.jpeg" alt="" class="card-img-top img-fluid"> -->
+                <!-- <div class="card-body"> -->
+                <h1 class="text-center">{{course?.title}}</h1>
+                <p *ngIf=" course?.description !== null">{{course?.description}}</p>
             </div>
-            <div class="col-md-12 text-center mt-5">
-                <h2>Related Courses</h2>
-                <hr>
-                <div *ngIf="questions.length !== 0; else noQuestion">
-                    <div class="row">
-                        <h5 class="col-md-12" *ngFor="let item of questions">{{item?.question}}</h5>
+        </div>
+    </div>
+
+    <div class="card h-100 mt-5">
+        <div class="card-body">
+            <h3 class="card-title text-center text-primary">Questions</h3>
+            <hr>
+            <div class="accordion accordion-flush" *ngIf="questions.length !== 0; else noQuestion">
+                <div class="accordion-item" *ngFor="let item of questions">
+                    <h2 class="accordion-header" [id]="'flush-heading-' + item?.id">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#flush-collapse-' + item?.id" aria-expanded="false"
+                            [attr.aria-controls]="'flush-collapse-' + item?.id">
+                            {{item?.question}}
+                        </button>
+                    </h2>
+                    <div [id]="'flush-collapse-' + item?.id" class="accordion-collapse collapse"
+                        [attr.aria-labelledby]="'flush-heading-' + item?.id" data-bs-parent=".accordion-flush">
+                        <h6 class="accordion-body">{{item?.answer}}</h6>
                     </div>
                 </div>
-                <ng-template #noQuestion>
-                    <h6 class="alert alert-info">No questions found.</h6>
-                </ng-template>
             </div>
+            <ng-template #noQuestion>
+                <h6 class="alert alert-info">No questions found.</h6>
+            </ng-template>
+        </div>
+    </div>
 
-            <button *ngIf="questions.length !== 0" class="btn btn-primary btn-lg mt-5"
-            (click)="start()">
-                Start
-            </button>
-            <br>
-            <button class="btn btn-primary btn-lg mt-5"
-            (click)="add()">
-                Add question
-            </button>
-            <!-- <div class="col-md-3">
+
+    <button *ngIf="questions.length !== 0" class="btn btn-primary btn-lg mt-5" (click)="start()">
+        Start
+    </button>
+    <br>
+    <button class="btn btn-primary btn-lg mt-5" (click)="add()">
+        Add question
+    </button>
+    <!-- <div class="col-md-3">
                 <app-post-card></app-post-card>
                 <app-post-card></app-post-card>
                 <app-post-card></app-post-card>
             </div> -->
-        <!-- </div> -->
     <!-- </div> -->
+    <!-- </div> -->
+
 </section>
+
+<ng-template #error>
+    <section class="container mt-5 mb-5 text-center">
+        <div class="row">
+            <div class="col-md-12 text-center mt-5">
+                <div class="alert alert-danger">Error: Course not found.</div>
+            </div>
+        </div>
+    </section>
+</ng-template>

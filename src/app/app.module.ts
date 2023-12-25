@@ -15,6 +15,7 @@ import { MdbModalModule, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ErrorComponent } from './error/error.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './modal/modal.component';
+import { SingleQuestionComponent } from './single-question/single-question.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ModalComponent } from './modal/modal.component';
     SinglePostComponent,
     PostCardComponent,
     ErrorComponent,
-    ModalComponent
+    ModalComponent,
+    SingleQuestionComponent
   ],
   imports: [
     BrowserModule,
