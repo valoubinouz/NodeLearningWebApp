@@ -6,24 +6,25 @@ you can find the last courses created and scrolling down you have the access to 
 
 ### Category page : 
 ![image](https://github.com/valoubinouz/NodeLearningWebApp/assets/145440005/f2f898dc-5d52-4af0-bcc9-708363d92d2a)
-When clicking a category you find all the related courses. Here for example when clicking Computer Science we have the different languages and tools available that 
-
+When clicking a category you find all the related courses. Here for example when clicking Computer Science we have different programming languages etc.  
 ### Unexisting category
 ![image](https://github.com/valoubinouz/NodeLearningWebApp/assets/145440005/837d9a91-92b4-4e41-a4c0-e48782020fab)
-WHen trying to access an unexisting category thanks to the url directly , here for exemple category number 71. This page appears. 
+When trying to access an unexisting category thanks to the url directly, here for exemple category number 71, this page appears to avoid errors.  
 
 ### Course page : 
 ![image](https://github.com/valoubinouz/NodeLearningWebApp/assets/145440005/fa864684-2895-4709-97ca-02fa724a47c4)
 This page display when clicking on a course. You can find all the questions and their answers, start the quizz and add new questions to the course.
 
-### add question pop up 
+### Pop up to add question 
 ![image](https://github.com/valoubinouz/NodeLearningWebApp/assets/145440005/647e3379-0a0b-49c4-8949-d3064c59b3b7)
+
+
 When adding a question to a course this pop up appears to let the user fill a question and an anwser
 
 ### Result page 
 ![image](https://github.com/valoubinouz/NodeLearningWebApp/assets/145440005/26e21822-9ffb-4b75-8e1e-85bc8b3265bc)
-After finishing a quizz, the result page displays showing number of right and wrong answers. you can also retry the quizz or go backt to the Course page 
+After finishing a quizz, the result page displays showing number of right and wrong answers. you can also retry the quizz or go back to the Course page 
 
 ### Question page 
 ![image](https://github.com/valoubinouz/NodeLearningWebApp/assets/145440005/daf14199-45db-47a5-b60d-fdf238e1ff3c)
-When starting a quizz, this is the page that shows every question. Then it is up to the user to mark if it's answer is right or wrong. 
+When starting a quizz, questions appear one by one under this question page format. Then it is up to the user to mark his answer is right or wrong. 
