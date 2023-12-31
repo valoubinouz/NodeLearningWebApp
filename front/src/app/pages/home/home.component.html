@@ -1,0 +1,27 @@
+<section class="featured-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col text-center mt-5">
+          <h2 class="text-white">Last Courses</h2>
+          <hr class="text-white">
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col mt-3" *ngFor="let item of lastCourses">
+          <app-post-card [course]="item"></app-post-card>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<section class="container mt-5 mb-5">
+    <div class="col-md-12 text-center mt-5">
+        <h2 class="text-gray">All the courses</h2>
+        <hr class="text-gray">
+        </div>
+  <div class="row justify-content-center">
+        <div class="col-md-3 mt-3" *ngFor="let item of courses">
+            <app-post-card [course]="item"></app-post-card>
+        </div>
+    </div>
+</section>

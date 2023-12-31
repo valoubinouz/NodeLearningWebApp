@@ -1,0 +1,29 @@
+nav{
+
+    height: 100px;
+    background-color: white;
+    border-bottom: 1px solid rgb(82, 82, 82);
+    
+}
+
+
+.nav-link{
+    color: grey;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.nav-link:hover{
+    color : black;
+    text-decoration: underline;
+}
+
+.title{
+    color: var(--primary-color);
+    font-size: 1.8rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    letter-spacing: 0.1rem; 
+    text-decoration: none;
+}

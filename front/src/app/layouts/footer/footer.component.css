@@ -1,0 +1,13 @@
+footer {
+    marfin-top: auto;
+    bottom: 0px;
+    width: 100%;
+    height: 130px;
+    padding: 15px;
+    background-color: var(--navbar-footer-color);
+}
+
+.site-logo{
+    font-size: 1.2em;
+}
+
