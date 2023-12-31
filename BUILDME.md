@@ -52,7 +52,7 @@ Right-click on "Login/Group Roles" and choose "Create > Login/Group Role." Name 
 ## Step 4: Run the Node.js backend
 ```powershell
 cd backend
-npm start
+node app.js
 ```
 
 
